@@ -1,0 +1,706 @@
+/* =========================================================
+   BOOKING CONFIRMATION PAGE
+   ========================================================= */
+
+.booking-confirmation-page {
+  padding: 18px 0 35px;
+}
+
+.booking-confirmation-container {
+  max-width: 1180px;
+}
+
+/* =========================================================
+   CONFIRMATION HEADER
+   ========================================================= */
+
+.confirmation-header-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+
+  margin-bottom: 18px;
+  padding: 20px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.confirmation-success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  flex: 0 0 48px;
+
+  border-radius: 50%;
+
+  background: #f0fdf4;
+  color: #15803d;
+
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.confirmation-header-content {
+  min-width: 0;
+}
+
+.confirmation-eyebrow {
+  margin: 0 0 5px;
+
+  color: #6b7280;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.confirmation-header-content h1 {
+  margin: 0 0 5px;
+
+  color: #111827;
+
+  font-size: 25px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+.confirmation-header-content p:last-child {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   BOOKING NUMBER / STATUS
+   ========================================================= */
+
+.confirmation-number-box,
+.confirmation-status-box {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  min-width: 125px;
+
+  padding: 9px 12px;
+
+  border-radius: 7px;
+
+  background: #f8fafc;
+}
+
+.confirmation-number-box span,
+.confirmation-status-box span {
+  color: #6b7280;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.confirmation-number-box strong {
+  color: #111827;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+.confirmation-status-box strong {
+  color: #15803d;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   MAIN TWO-COLUMN LAYOUT
+   ========================================================= */
+
+.confirmation-layout {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 300px;
+
+  gap: 18px;
+
+  align-items: start;
+}
+
+.confirmation-main {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+
+  min-width: 0;
+}
+
+.confirmation-sidebar {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+
+  position: sticky;
+  top: 18px;
+
+  min-width: 0;
+}
+
+/* =========================================================
+   COMMON SECTION CARD
+   ========================================================= */
+
+.confirmation-section,
+.confirmation-price-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  padding: 17px;
+}
+
+.confirmation-section-heading {
+  margin-bottom: 11px;
+  padding-bottom: 7px;
+
+  border-bottom: 1px solid #edf0f2;
+}
+
+.confirmation-section-heading h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 17px;
+  font-weight: 650;
+
+  line-height: 1.25;
+}
+
+/* =========================================================
+   DETAIL GRID
+   ========================================================= */
+
+.confirmation-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 10px 18px;
+}
+
+.confirmation-item {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.confirmation-item span {
+  color: #6b7280;
+
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.confirmation-item strong {
+  color: #111827;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  line-height: 1.35;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   SPECIAL REQUEST
+   ========================================================= */
+
+.confirmation-special-request {
+  margin: 0;
+
+  color: #4b5563;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  white-space: pre-wrap;
+}
+
+/* =========================================================
+   PRICE DETAILS
+   ========================================================= */
+
+.confirmation-price-card {
+  padding: 17px;
+}
+
+.confirmation-price-row {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding: 6px 0;
+
+  font-size: 13px;
+}
+
+.confirmation-price-row span {
+  color: #6b7280;
+}
+
+.confirmation-price-row strong {
+  color: #111827;
+
+  font-weight: 600;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+.confirmation-price-divider {
+  height: 1px;
+
+  margin: 8px 0;
+
+  background: #edf0f2;
+}
+
+.confirmation-total {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 5px 0 10px;
+}
+
+.confirmation-total span {
+  color: #374151;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.confirmation-total strong {
+  color: #111827;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.confirmation-payment-status {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 10px;
+
+  padding-top: 9px;
+
+  border-top: 1px solid #edf0f2;
+
+  font-size: 12px;
+}
+
+.confirmation-payment-status span {
+  color: #6b7280;
+}
+
+.confirmation-payment-status strong {
+  color: #15803d;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   CONFIRMATION NOTE
+   ========================================================= */
+
+.confirmation-note {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 9px;
+
+  padding: 11px;
+
+  border-radius: 8px;
+
+  background: #f8fafc;
+}
+
+.confirmation-note-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 19px;
+  height: 19px;
+
+  flex: 0 0 19px;
+
+  border-radius: 50%;
+
+  background: #e5e7eb;
+  color: #374151;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.confirmation-note strong {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: #374151;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.confirmation-note p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.confirmation-actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.confirmation-primary-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: 38px;
+
+  box-sizing: border-box;
+
+  padding: 8px 14px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #111827;
+  color: #ffffff;
+
+  text-align: center;
+  text-decoration: none;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.confirmation-primary-button:hover {
+  background: #1f2937;
+}
+
+.confirmation-primary-button:active {
+  transform: translateY(1px);
+}
+
+/* =========================================================
+   LOADING / ERROR / NOT FOUND
+   ========================================================= */
+
+.confirmation-message-card {
+  max-width: 620px;
+
+  margin: 0 auto;
+
+  padding: 35px 25px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+
+  text-align: center;
+}
+
+.confirmation-message-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  margin: 0 auto 14px;
+
+  border-radius: 50%;
+
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.confirmation-loading-icon {
+  background: #f3f4f6;
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.confirmation-error-icon {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.confirmation-message-card h1 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.confirmation-message-card > p {
+  margin: 0 0 14px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.confirmation-error {
+  margin: 12px 0;
+
+  padding: 9px 12px;
+
+  border: 1px solid #fecaca;
+  border-radius: 7px;
+
+  background: #fef2f2;
+  color: #b91c1c;
+
+  font-size: 13px;
+  line-height: 1.45;
+
+  text-align: left;
+}
+
+.confirmation-reference {
+  color: #4b5563 !important;
+
+  margin: 14px 0 18px !important;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .confirmation-header-card {
+    grid-template-columns: auto minmax(0, 1fr);
+
+    gap: 12px;
+  }
+
+  .confirmation-number-box,
+  .confirmation-status-box {
+    grid-column: auto;
+  }
+
+  .confirmation-layout {
+    grid-template-columns: minmax(0, 1fr) 280px;
+
+    gap: 14px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 720px) {
+  .booking-confirmation-page {
+    padding: 12px 0 25px;
+  }
+
+  .confirmation-header-card {
+    grid-template-columns: auto minmax(0, 1fr);
+
+    margin-bottom: 12px;
+
+    padding: 16px;
+
+    border-radius: 10px;
+  }
+
+  .confirmation-success-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-basis: 40px;
+
+    font-size: 19px;
+  }
+
+  .confirmation-header-content h1 {
+    font-size: 21px;
+  }
+
+  .confirmation-header-content p:last-child {
+    font-size: 12px;
+  }
+
+  .confirmation-number-box,
+  .confirmation-status-box {
+    grid-column: 1 / -1;
+
+    min-width: 0;
+  }
+
+  .confirmation-layout {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .confirmation-main {
+    gap: 12px;
+
+    width: 100%;
+  }
+
+  .confirmation-sidebar {
+    position: static;
+
+    width: 100%;
+  }
+
+  .confirmation-section,
+  .confirmation-price-card {
+    padding: 14px;
+
+    border-radius: 9px;
+  }
+
+  .confirmation-section-heading {
+    margin-bottom: 9px;
+  }
+
+  .confirmation-section-heading h2 {
+    font-size: 16px;
+  }
+
+  .confirmation-grid {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px 12px;
+  }
+
+  .confirmation-item span {
+    font-size: 10px;
+  }
+
+  .confirmation-item strong {
+    font-size: 12px;
+  }
+
+  .confirmation-total strong {
+    font-size: 17px;
+  }
+
+  .confirmation-message-card {
+    padding: 30px 18px;
+
+    border-radius: 10px;
+  }
+
+  .confirmation-message-card h1 {
+    font-size: 22px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .confirmation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .confirmation-header-card {
+    padding: 14px;
+  }
+
+  .confirmation-header-content h1 {
+    font-size: 19px;
+  }
+
+  .confirmation-number-box,
+  .confirmation-status-box {
+    padding: 8px 10px;
+  }
+
+  .confirmation-message-card {
+    padding: 25px 15px;
+  }
+}

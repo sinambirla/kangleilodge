@@ -1,0 +1,55 @@
+Yes. For Kanglei Lodge, Imphal, Manipur to be easily found when someone searches things like:
+
+“lodges in Imphal”
+“hotels near Imphal”
+“Kanglei Lodge Imphal”
+“rooms in Imphal Manipur”
+“lodge near Imphal airport”
+
+and to have the correct location displayed on Google Maps, there are a few separate things we should set up.
+
+What we should do
+Google Business Profile
+Create/claim the Kanglei Lodge listing.
+Set the exact business name: Kanglei Lodge
+Category: likely Lodge / Hotel depending on Google's available categories.
+Add the correct address in Imphal.
+Put the correct map pin.
+Add phone number, website (kangleilodge.com), photos, rooms, amenities, check-in information, etc.
+Google Maps location
+Verify that the pin is physically at the lodge.
+Make sure Google isn't displaying another business/name at that location.
+Add the correct latitude/longitude if necessary.
+This is particularly important because you previously mentioned the location search showing a different name.
+Website SEO
+We should make kangleilodge.com clearly tell Google what the business is and where it is:
+Kanglei Lodge
+Imphal, Manipur
+accommodation/lodge
+address
+phone
+geographic coordinates
+rooms and facilities
+Google structured data
+Add appropriate Hotel/LodgingBusiness structured data to the website so search engines can understand the business and its location.
+Google Search Console
+Register kangleilodge.com, verify ownership and submit the sitemap.
+Local citations
+Make sure the same name, address and phone number are consistent across important directories and travel/local platforms.
+Reviews and photos
+These are particularly important for local discovery. Genuine guest reviews and good photographs help Google understand and present the property.
+One important distinction
+
+There are actually two different goals:
+
+A. Google Maps
+
+Someone searches “Kanglei Lodge” → Google shows the lodge at the correct location on the map.
+
+B. Google Search / local results
+
+Someone searches “lodges in Imphal Manipur” → Kanglei Lodge can appear among the local results.
+
+We should configure both, not just add a map to your website.
+
+If you want, we can do this step-by-step from the beginning, starting with checking whether Kanglei Lodge alread

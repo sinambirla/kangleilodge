@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: kangleilodge-ingress
+  namespace: kangleilodge
+
+spec:
+  ingressClassName: traefik
+
+  rules:
+  - host: kangleilodge.com
+
+    http:
+      paths:
+      - path: /chinjak-api
+
+        pathType: Prefix
+
+        backend:
+          service:
+            name: kangleilodge-api
+
+            port:
+              number: 80

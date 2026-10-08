@@ -1,0 +1,1012 @@
+bsolutely. Below is a consolidated Chinjak.com development and maintenance reference covering what we have completed so far, including the VPS structure, database, backend APIs, authentication, and the frontend work.
+
+Chinjak.com — Development & Maintenance Reference
+
+Last updated: 24 September 2026
+Current stage: Backend APIs complete for core booking flow; frontend availability integration working.
+
+1. Project Structure
+Local Windows development
+D:\VU Projects 2026\Chinjak\
+│
+├── backend\
+│   ├── server.js
+│   ├── package.json
+│   ├── package-lock.json
+│   └── .env
+│
+└── frontend\
+    ├── package.json
+    ├── package-lock.json
+    ├── .env
+    ├── index.html
+    └── src\
+        ├── api\
+        │   ├── api.js
+        │   └── http.js
+        │
+        ├── assets\
+        │   ├── hero.png
+        │   ├── react.svg
+        │   └── vite.svg
+        │
+        ├── components\
+        ├── layouts\
+        ├── pages\
+        │   ├── admin\
+        │   ├── booking\
+        │   └── rooms\
+        │
+        ├── styles\
+        ├── App.jsx
+        ├── App.css
+        ├── index.css
+        └── main.jsx
+2. Production VPS Structure
+
+BigRock VPS:
+
+Public IP:
+66.116.205.58
+
+OS:
+
+AlmaLinux 8.10
+
+Linux application user:
+
+chinjak
+
+The application is deliberately not being run as root.
+
+Production directories:
+
+/home/chinjak/
+│
+├── public_html/
+│   └── chinjak.com/
+│       └── frontend production build
+│
+├── apps/
+│   └── chinjak-api/
+│       └── backend
+│
+├── data/
+│   └── uploads/
+│
+└── .config/
+    └── chinjak-api/
+        └── .env
+
+Permissions were designed as:
+
+/home/chinjak                         700
+/home/chinjak/.config/chinjak-api    700
+.env                                  600
+
+This keeps production database credentials and JWT secrets outside the public web directory.
+
+3. PostgreSQL Database
+
+Remote PostgreSQL server:
+
+Host:     34.71.87.187
+Port:     5432
+Database: chinjak_db
+User:     postgres
+
+The database connection was tested successfully.
+
+Important
+
+The PostgreSQL password is not stored in the frontend and should never be committed to Git or placed inside:
+
+public_html
+4. Database Tables
+
+Current Chinjak database contains:
+
+hotel
+room_types
+rooms
+amenities
+room_type_amenities
+room_images
+customers
+bookings
+booking_rooms
+enquiries
+admin_users
+5. Hotel Data
+
+Current dummy hotel:
+
+Suraj Chinjak Imphal Hotel
+
+Location:
+
+123 BT Road
+Imphal
+Manipur
+795001
+India
+
+Contact:
+
++91 99999 99999
+reservations@chinjak.com
+
+Check-in:
+
+14:00
+
+Check-out:
+
+11:00
+
+The coordinates and hotel information are currently dummy development data and should be replaced with the real hotel information before production launch.
+
+6. Room Types
+
+Three room types currently exist.
+
+Standard Room
+Maximum adults:    2
+Maximum children:  1
+Bed:               Queen Bed
+Size:              250 sq.ft
+Base rate:         ₹2,500
+Extra adult:       ₹800
+Extra child:       ₹500
+
+Physical rooms:
+
+101
+102
+103
+
+Total:
+
+3
+Deluxe Room
+Maximum adults:    2
+Maximum children:  2
+Bed:               King Bed
+Size:              350 sq.ft
+Base rate:         ₹4,000
+Extra adult:       ₹1,000
+Extra child:       ₹600
+
+Physical rooms:
+
+201
+202
+203
+
+Total:
+
+3
+Family Suite
+Maximum adults:    4
+Maximum children:  2
+Bed:               2 Queen Beds
+Size:              500 sq.ft
+Base rate:         ₹6,000
+Extra adult:       ₹1,200
+Extra child:       ₹700
+
+Physical rooms:
+
+301
+302
+
+Total:
+
+2
+7. Amenities
+
+Current amenities:
+
+1. Free WiFi
+2. Air Conditioning
+3. Television
+4. Hot Water
+5. Parking
+6. Breakfast
+7. Balcony
+8. Room Service
+9. Swimming Pool
+10. Mini Refrigerator
+
+Room mappings have already been inserted.
+
+8. Backend Technology
+
+Current backend stack:
+
+Node.js
+Express
+PostgreSQL
+pg
+dotenv
+CORS
+bcrypt
+jsonwebtoken
+
+Installed versions include:
+
+express       5.2.1
+pg            8.23.0
+cors          2.8.6
+dotenv        18.0.3
+bcrypt        6.0.0
+jsonwebtoken  9.0.3
+9. Backend Environment
+
+Local:
+
+D:\VU Projects 2026\Chinjak\backend\.env
+
+Production:
+
+/home/chinjak/.config/chinjak-api/.env
+
+Current environment structure:
+
+PORT=5022
+
+DB_HOST=34.71.87.187
+DB_PORT=5432
+DB_NAME=chinjak_db
+DB_USER=postgres
+DB_PASSWORD=<secret>
+
+JWT_SECRET=<secret>
+
+Never put this file inside public_html.
+
+10. Backend Port
+
+Local and planned production backend port:
+
+5022
+
+Local backend:
+
+http://127.0.0.1:5022
+
+API base:
+
+http://127.0.0.1:5022/chinjak-api
+11. Health API
+
+Endpoint:
+
+GET /chinjak-api/health
+
+Purpose:
+
+verifies backend is running
+verifies PostgreSQL connectivity
+
+Example:
+
+http://127.0.0.1:5022/chinjak-api/health
+12. Hotel API
+GET /chinjak-api/hotel
+
+Returns hotel information.
+
+13. Rooms API
+GET /chinjak-api/rooms
+
+Returns active room types and currently available physical room count.
+
+14. Room Details API
+GET /chinjak-api/rooms/:id
+
+Example:
+
+GET /chinjak-api/rooms/1
+
+Returns:
+
+room type information
+available room count
+amenities
+images
+physical rooms
+15. Availability API
+
+This is now connected to the frontend.
+
+Endpoint:
+
+GET /chinjak-api/availability
+
+Parameters:
+
+checkIn
+checkOut
+adults
+children
+
+Example:
+
+/chinjak-api/availability?checkIn=2026-10-15&checkOut=2026-10-17&adults=2&children=0
+
+The backend validates:
+
+date format
+real calendar dates
+check-out after check-in
+adults > 0
+children >= 0
+room capacity
+
+It also checks physical room availability against existing bookings.
+
+Booking overlap logic:
+
+b.status IN ('PENDING', 'CONFIRMED', 'CHECKED_IN')
+AND b.check_in < requested_check_out
+AND b.check_out > requested_check_in
+
+This prevents overlapping reservations.
+
+16. Booking API
+
+Booking creation:
+
+POST /chinjak-api/bookings
+
+Current booking flow:
+
+Guest details
+     ↓
+Dates
+     ↓
+Guests
+     ↓
+Room type
+     ↓
+Check room capacity
+     ↓
+Lock room type
+     ↓
+Find available physical room
+     ↓
+Check overlapping bookings
+     ↓
+Create/update customer
+     ↓
+Create booking
+     ↓
+Create booking_rooms record
+     ↓
+COMMIT
+
+Booking starts as:
+
+status = PENDING
+payment_status = UNPAID
+
+Tax and discount are currently:
+
+tax      = 0
+discount = 0
+
+These are temporary business rules for development.
+
+17. Booking Lookup
+
+Endpoint:
+
+GET /chinjak-api/bookings/:bookingNumber
+
+Example:
+
+GET /chinjak-api/bookings/CHJ-XXXXXXXX
+
+Returns:
+
+booking number
+customer
+check-in
+check-out
+guests
+room
+room type
+rate
+nights
+subtotal
+total
+booking status
+payment status
+special request
+18. Booking Cancellation
+
+Endpoint:
+
+POST /chinjak-api/bookings/:bookingNumber/cancel
+
+Body:
+
+{
+  "email": "guest@example.com"
+}
+
+The backend verifies that the email matches the booking.
+
+Cancellation is rejected if the booking is already:
+
+CANCELLED
+CHECKED_IN
+CHECKED_OUT
+NO_SHOW
+19. Enquiry API
+
+Endpoint:
+
+POST /chinjak-api/enquiries
+
+Required:
+
+name
+phone
+email
+message
+
+Optional:
+
+checkIn
+checkOut
+
+New enquiries are created with:
+
+status = NEW
+20. Admin Authentication
+
+Admin table:
+
+admin_users
+
+Admin role currently supports:
+
+ADMIN
+
+Status:
+
+ACTIVE
+INACTIVE
+
+Password is stored using:
+
+bcrypt
+
+Passwords are not stored as plain text.
+
+21. Admin Login
+
+Endpoint:
+
+POST /chinjak-api/admin/login
+
+Successful login returns:
+
+{
+  "success": true,
+  "message": "Login successful",
+  "token": "...",
+  "admin": {
+    "id": "1",
+    "name": "...",
+    "email": "...",
+    "role": "ADMIN"
+  }
+}
+
+The token is a JWT.
+
+22. Admin Authentication Middleware
+
+Protected routes use:
+
+Authorization: Bearer <JWT>
+
+The middleware verifies:
+
+Authorization header exists
+Bearer format is correct
+JWT is valid
+JWT is not expired
+role is ADMIN
+23. Admin /me
+
+Endpoint:
+
+GET /chinjak-api/admin/me
+
+Protected.
+
+Used to verify the currently authenticated administrator.
+
+24. Admin Dashboard API
+
+Endpoint:
+
+GET /chinjak-api/admin/dashboard
+
+Protected.
+
+Returns:
+
+Room statistics
+total_rooms
+available_rooms
+maintenance_rooms
+out_of_service_rooms
+Booking statistics
+total_bookings
+pending_bookings
+confirmed_bookings
+checked_in_bookings
+checked_out_bookings
+cancelled_bookings
+no_show_bookings
+Today's activity
+today_check_ins
+today_check_outs
+Enquiries
+total_enquiries
+new_enquiries
+contacted_enquiries
+resolved_enquiries
+Recent bookings
+
+Latest five bookings with:
+
+booking number
+guest
+email
+dates
+guests
+number of rooms
+total
+status
+payment status
+created_at
+25. Admin Booking List
+
+Endpoint:
+
+GET /chinjak-api/admin/bookings
+
+Protected.
+
+Without filter:
+
+GET /chinjak-api/admin/bookings
+
+Status filter:
+
+GET /chinjak-api/admin/bookings?status=PENDING
+
+Allowed statuses:
+
+PENDING
+CONFIRMED
+CANCELLED
+CHECKED_IN
+CHECKED_OUT
+NO_SHOW
+
+Invalid status returns:
+
+HTTP 400
+26. Current Test Booking Data
+
+There are currently four test bookings.
+
+Two are cancelled:
+
+CHJ-1790236141253-21300D4E
+CHJ-1790236277978-AF304955
+
+Two are pending:
+
+CHJ-1790238139712-F1D70F25
+CHJ-1790238231943-21ACADBE
+
+The pending Standard Room bookings are:
+
+10 Nov 2026 → 12 Nov 2026
+
+They occupy Standard Rooms:
+
+102
+103
+
+This gives us useful data for testing availability.
+
+27. Frontend Technology
+
+Frontend:
+
+React 19
+Vite 8
+React Router 7
+JavaScript
+CSS
+
+Frontend development server:
+
+http://localhost:5173/
+28. Frontend API Configuration
+
+File:
+
+frontend/.env
+
+Current:
+
+VITE_API_BASE_URL=http://127.0.0.1:5022/chinjak-api
+
+This contains no database credentials.
+
+29. Frontend API Layer
+
+File:
+
+src/api/api.js
+
+Defines the API base URL.
+
+File:
+
+src/api/http.js
+
+Contains reusable API functions:
+
+getHotel()
+getRooms()
+getRoomDetails()
+getAvailability()
+createBooking()
+getBooking()
+cancelBooking()
+createEnquiry()
+
+This gives us one central place for frontend/backend communication.
+
+30. Frontend Availability Integration — Completed
+
+The Check Availability button now opens the availability search.
+
+The user enters:
+
+Check-in
+Check-out
+Adults
+Children
+
+The frontend calls:
+
+getAvailability()
+
+which calls:
+
+GET /chinjak-api/availability
+
+The response is rendered dynamically.
+
+We successfully received:
+
+Standard Room
+₹2500/night
+3 available
+
+Deluxe Room
+₹4000/night
+3 available
+
+Family Suite
+₹6000/night
+2 available
+
+This proves the frontend-to-backend-to-database integration is working.
+
+31. Current Frontend Design
+
+Current visual direction:
+
+Dark navy
++
+Warm gold
++
+Cream/white
++
+Hotel photography
+
+The homepage currently contains:
+
+Header
+    CHINJAK
+    Hotel & Hospitality
+    Home
+    Rooms
+    About
+    Contact
+    Book Now
+
+Hero
+    WELCOME TO CHINJAK
+    A comfortable stay,
+    a memorable experience.
+    Check Availability
+
+Availability
+    Check-in
+    Check-out
+    Adults
+    Children
+    Search Rooms
+
+Available Rooms
+    Standard Room
+    Deluxe Room
+    Family Suite
+
+Intro section
+
+Footer
+32. Files Modified So Far
+Backend
+
+Primarily:
+
+backend/server.js
+backend/package.json
+backend/.env
+
+Plus database/schema/data work in PostgreSQL.
+
+Frontend
+frontend/.env
+
+frontend/src/api/api.js
+frontend/src/api/http.js
+
+frontend/src/App.jsx
+frontend/src/App.css
+frontend/src/index.css
+
+Vite-generated files remain under:
+
+frontend/src/assets/
+33. How to Start Backend Locally
+
+From:
+
+cd "D:\VU Projects 2026\Chinjak\backend"
+
+Run:
+
+npm start
+
+Expected:
+
+Chinjak API running on http://127.0.0.1:5022
+34. How to Start Frontend Locally
+
+Open another PowerShell:
+
+cd "D:\VU Projects 2026\Chinjak\frontend"
+
+Run:
+
+npm run dev
+
+Expected:
+
+http://localhost:5173/
+35. Frontend Production Build
+
+When development is complete:
+
+cd "D:\VU Projects 2026\Chinjak\frontend"
+npm run build
+
+Vite will create:
+
+frontend/dist/
+
+That dist directory will eventually be deployed to:
+
+/home/chinjak/public_html/chinjak.com/
+36. Planned Production Architecture
+
+Final architecture:
+
+                    Internet
+                       │
+                       ▼
+                chinjak.com
+                       │
+                 Apache HTTPS
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+          ▼                         ▼
+     React/Vite                 /chinjak-api/
+     static files                     │
+                                      ▼
+                               Node.js / PM2
+                                  port 5022
+                                      │
+                                      ▼
+                              PostgreSQL
+                             34.71.87.187
+                             chinjak_db
+
+Apache will eventually reverse proxy:
+
+/chinjak-api/
+        ↓
+127.0.0.1:5022/chinjak-api/
+37. Planned PM2 Production Service
+
+Backend will run as:
+
+chinjak-api
+
+under Linux user:
+
+chinjak
+
+Not root.
+
+This is important for production security and maintenance.
+
+38. Planned Apache Configuration
+
+The intended virtual host structure is:
+
+<VirtualHost *:80>
+    ServerName chinjak.com
+    ServerAlias www.chinjak.com
+
+    DocumentRoot /home/chinjak/public_html/chinjak.com
+
+    <Directory /home/chinjak/public_html/chinjak.com>
+        AllowOverride All
+        Require all granted
+        Options FollowSymLinks
+    </Directory>
+
+    ProxyPass        /chinjak-api/ http://127.0.0.1:5022/chinjak-api/
+    ProxyPassReverse /chinjak-api/ http://127.0.0.1:5022/chinjak-api/
+
+    ErrorLog /var/log/httpd/chinjak.com-error.log
+    CustomLog /var/log/httpd/chinjak.com-access.log combined
+</VirtualHost>
+
+HTTPS/SSL will be configured later.
+
+39. Important Current Business Rules
+
+These should be remembered before changing backend logic.
+
+Availability
+
+A physical room is unavailable when an active booking overlaps the requested dates.
+
+Active blocking statuses:
+
+PENDING
+CONFIRMED
+CHECKED_IN
+
+Cancelled bookings do not block rooms.
+
+Booking
+
+Currently:
+
+One booking
+→ one room
+
+Multi-room booking is not implemented yet.
+
+Payment
+
+Currently:
+
+UNPAID
+
+There is no payment gateway yet.
+
+Tax
+
+Currently:
+
+0
+
+No tax calculation has been implemented yet.
+
+Pending bookings
+
+A PENDING booking currently blocks the assigned room.
+
+Later we may want an expiration/holding mechanism so abandoned bookings don't block inventory indefinitely.
+
+40. Recommended Next Development Sequence
+
+I recommend keeping the implementation in this order:
+
+CURRENT
+   │
+   ▼
+Availability search                    ✅
+   │
+   ▼
+Click available room
+   │
+   ▼
+Room Details page
+   │
+   ▼
+Booking form
+   │
+   ▼
+Create booking
+   │
+   ▼
+Booking confirmation
+   │
+   ▼
+Booking lookup
+   │
+   ▼
+Booking cancellation
+   │
+   ▼
+Admin Login
+   │
+   ▼
+Admin Dashboard
+   │
+   ▼
+Admin Booking Management
+   │
+   ▼
+Enquiry management
+   │
+   ▼
+Production deployment
+   │
+   ▼
+Apache + HTTPS
+   │
+   ▼
+PM2
+   │
+   ▼
+Production testing
+Current stopping point
+
+We are here:
+
+CHINJAK Homepage
+      ↓
+Check Availability
+      ↓
+Real API
+      ↓
+PostgreSQL
+      ↓
+Available room types displayed
+
+The next logical coding step is:
+
+Available Room → Room Details → "Book This Room" → Booking Form

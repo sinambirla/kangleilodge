@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kangleilodge-api
+  namespace: kangleilodge
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: kangleilodge-api
+
+  template:
+    metadata:
+      labels:
+        app: kangleilodge-api
+
+    spec:
+      containers:
+      - name: api
+
+        image: sinamdockerkanglei/kangleilodge-api:1.0
+
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 5022
+
+        env:
+        - name: PORT
+          value: "5022"
+
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: kangleilodge-secret
+              key: DB_HOST
+
+        - name: DB_PORT
+          valueFrom:
+            secretKeyRef:
+              name: kangleilodge-secret
+              key: DB_PORT
+
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: kangleilodge-secret
+              key: DB_NAME
+
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: kangleilodge-secret
+              key: DB_USER
+
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: kangleilodge-secret
+              key: DB_PASSWORD
+
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: kangleilodge-secret
+              key: JWT_SECRET

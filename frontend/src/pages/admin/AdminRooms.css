@@ -1,0 +1,270 @@
+.admin-rooms-page {
+  padding: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-rooms-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.admin-rooms-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.admin-page-eyebrow {
+  margin: 0 0 6px;
+  color: #777;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.admin-page-description {
+  margin: 7px 0 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.admin-rooms-refresh-button {
+  padding: 10px 16px;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-rooms-refresh-button:hover:not(:disabled) {
+  background: #f7f7f7;
+}
+
+.admin-rooms-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-rooms-error,
+.admin-rooms-success {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+
+.admin-rooms-error {
+  color: #b42318;
+  background: #fde8e8;
+  border: 1px solid #f5c2c0;
+}
+
+.admin-rooms-success {
+  color: #237a3b;
+  background: #e4f7e9;
+  border: 1px solid #b9e5c4;
+}
+
+.admin-rooms-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-rooms-summary-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.admin-rooms-summary-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: #777;
+  font-size: 12px;
+}
+
+.admin-rooms-summary-card strong {
+  font-size: 24px;
+}
+
+.admin-rooms-table-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.admin-rooms-table-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 22px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.admin-rooms-table-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.admin-rooms-table-header p {
+  margin: 5px 0 0;
+  color: #777;
+  font-size: 13px;
+}
+
+.admin-rooms-table-wrapper {
+  overflow-x: auto;
+}
+
+.admin-rooms-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-rooms-table th,
+.admin-rooms-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #eeeeee;
+  text-align: left;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.admin-rooms-table th {
+  color: #666;
+  background: #fafafa;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.admin-rooms-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-room-number {
+  font-size: 15px;
+}
+
+.admin-room-status {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-room-status.available {
+  background: #e4f7e9;
+  color: #237a3b;
+}
+
+.admin-room-status.maintenance {
+  background: #fff4d6;
+  color: #8a6100;
+}
+
+.admin-room-status.out-of-service {
+  background: #fde8e8;
+  color: #b42318;
+}
+
+.admin-room-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.admin-room-action {
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-room-action:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.admin-room-action.available {
+  background: #e4f7e9;
+  border-color: #b9e5c4;
+  color: #237a3b;
+}
+
+.admin-room-action.maintenance {
+  background: #fff4d6;
+  border-color: #ead59a;
+  color: #8a6100;
+}
+
+.admin-room-action.out-of-service {
+  background: #fde8e8;
+  border-color: #f5c2c0;
+  color: #b42318;
+}
+
+.admin-rooms-state {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.admin-rooms-state h3 {
+  margin: 0 0 8px;
+}
+
+.admin-rooms-state p {
+  margin: 0;
+  color: #777;
+}
+
+.admin-rooms-spinner {
+  width: 26px;
+  height: 26px;
+  margin: 0 auto 12px;
+  border: 3px solid #ddd;
+  border-top-color: #555;
+  border-radius: 50%;
+  animation: admin-rooms-spin 0.8s linear infinite;
+}
+
+@keyframes admin-rooms-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .admin-rooms-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-rooms-page {
+    padding: 18px;
+  }
+
+  .admin-rooms-header {
+    flex-direction: column;
+  }
+
+  .admin-rooms-refresh-button {
+    width: 100%;
+  }
+
+  .admin-rooms-summary {
+    grid-template-columns: 1fr;
+  }
+}

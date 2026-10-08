@@ -1,0 +1,54 @@
+.admin-layout {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.admin-main {
+  min-width: 0;
+  min-height: 100vh;
+
+  margin-left: 240px;
+
+  background: #f8fafc;
+
+  overflow-x: hidden;
+}
+
+/*
+ * Desktop content container behavior
+ */
+.admin-main > * {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/*
+ * Prevent tables and large admin sections
+ * from forcing the entire page wider.
+ */
+.admin-main img,
+.admin-main table {
+  max-width: 100%;
+}
+
+/*
+ * Tablet / mobile
+ *
+ * AdminSidebar changes from fixed positioning
+ * to normal document flow at 900px.
+ */
+@media (max-width: 900px) {
+  .admin-main {
+    margin-left: 0;
+    min-height: auto;
+  }
+}
+
+/*
+ * Smaller mobile screens
+ */
+@media (max-width: 600px) {
+  .admin-main {
+    width: 100%;
+  }
+}
