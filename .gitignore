@@ -28,3 +28,4 @@ Thumbs.db
 *.backup
 *.bak
 *.step6-backup
+k8s/secret.yaml
